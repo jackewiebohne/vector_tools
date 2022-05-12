@@ -551,148 +551,91 @@ class metaverse:
 
     def parallel_graph(matrix, indexdict, matrix2, indexdict2, keyword, title, arrow_head_width1=0.15,arrow_head_width2=0.15,save=False):
         raise NotImplementedError()
-        keymatrix, keylist, matrix, indexdict = extract_arr_row(matrix, keyword, indexdict)
-        keymatrix2, keylist2, matrix2, indexdict2 = extract_arr_row(matrix2, keyword, indexdict2)
+#         keymatrix, keylist, matrix, indexdict = extract_arr_row(matrix, keyword, indexdict)
+#         keymatrix2, keylist2, matrix2, indexdict2 = extract_arr_row(matrix2, keyword, indexdict2)
         
-        fig, ax = plt.subplots(figsize=(20, 20))
+#         fig, ax = plt.subplots(figsize=(20, 20))
         
-        xs = []
-        ys = []
-        ### points for one keyword timeline
-        x1 = matrix[:,0]
-        y1 = matrix[:,1]
-        ax.scatter(x1, y1, c='r', alpha=0.5)
-        plt.xlabel('t-SNE_x')
-        plt.ylabel('t-SNE_y')
-        texts1 = []
-        for ix1, txt1 in enumerate(indexdict.values()):
-            ax.annotate(txt1, (x1[ix1], y1[ix1]), c='r', alpha=0.8) # c='grey' alpha=0.7
-            xs.append(x1[ix1])
-            ys.append(y1[ix1])
-    #         texts1.append(plt.text(x1[ix1], y1[ix1],txt1))
+#         xs = []
+#         ys = []
+#         ### points for one keyword timeline
+#         x1 = matrix[:,0]
+#         y1 = matrix[:,1]
+#         ax.scatter(x1, y1, c='r', alpha=0.5)
+#         plt.xlabel('t-SNE_x')
+#         plt.ylabel('t-SNE_y')
+#         texts1 = []
+#         for ix1, txt1 in enumerate(indexdict.values()):
+#             ax.annotate(txt1, (x1[ix1], y1[ix1]), c='r', alpha=0.8) # c='grey' alpha=0.7
+#             xs.append(x1[ix1])
+#             ys.append(y1[ix1])
+#     #         texts1.append(plt.text(x1[ix1], y1[ix1],txt1))
 
-        ### line for one keyword timeline
-        x2 = keymatrix[:,0]
-        y2 = keymatrix[:,1]
-        texts2 = []
-        ax.plot(x2, y2, c='r')
-        for ix2, txt2 in enumerate(keylist):
-            texts2.append(plt.text(x2[ix2], y2[ix2],txt2, fontsize=12))
-            xs.append(x2[ix2])
-            ys.append(y2[ix2])
+#         ### line for one keyword timeline
+#         x2 = keymatrix[:,0]
+#         y2 = keymatrix[:,1]
+#         texts2 = []
+#         ax.plot(x2, y2, c='r')
+#         for ix2, txt2 in enumerate(keylist):
+#             texts2.append(plt.text(x2[ix2], y2[ix2],txt2, fontsize=12))
+#             xs.append(x2[ix2])
+#             ys.append(y2[ix2])
         
-        ### points for the other keyword timeline
-        x3 = matrix2[:,0]
-        y3 = matrix2[:,1]
-        texts3 = []
-        ax.scatter(x3, y3, c='blue', alpha=0.5)
-        for ix3, txt3 in enumerate(indexdict2.values()):
-            ax.annotate(txt3, (x3[ix3], y3[ix3]), c='blue', alpha=0.8) # c='grey' alpha=0.7
-            xs.append(x3[ix3])
-            ys.append(y3[ix3])
-    #         texts3.append(plt.text(x3[ix3], y3[ix3], txt3))
+#         ### points for the other keyword timeline
+#         x3 = matrix2[:,0]
+#         y3 = matrix2[:,1]
+#         texts3 = []
+#         ax.scatter(x3, y3, c='blue', alpha=0.5)
+#         for ix3, txt3 in enumerate(indexdict2.values()):
+#             ax.annotate(txt3, (x3[ix3], y3[ix3]), c='blue', alpha=0.8) # c='grey' alpha=0.7
+#             xs.append(x3[ix3])
+#             ys.append(y3[ix3])
+#     #         texts3.append(plt.text(x3[ix3], y3[ix3], txt3))
         
-        ### line for the other keyword timeline
-        x4 = keymatrix2[:,0]
-        y4 = keymatrix2[:,1]
-        texts4 = []
-        ax.plot(x4, y4, c='blue')
-        ax.set_title('\''+ keyword + '\' ' + title, fontsize=16)
-        for ix4, txt4 in enumerate(keylist2):
-            xs.append(x4[ix4])
-            ys.append(y4[ix4])
-            texts4.append(plt.text(x4[ix4], y4[ix4], txt4, fontsize=12))
+#         ### line for the other keyword timeline
+#         x4 = keymatrix2[:,0]
+#         y4 = keymatrix2[:,1]
+#         texts4 = []
+#         ax.plot(x4, y4, c='blue')
+#         ax.set_title('\''+ keyword + '\' ' + title, fontsize=16)
+#         for ix4, txt4 in enumerate(keylist2):
+#             xs.append(x4[ix4])
+#             ys.append(y4[ix4])
+#             texts4.append(plt.text(x4[ix4], y4[ix4], txt4, fontsize=12))
         
-        ### adding arrows for direction of first keyword timeline
-        halfwayvecs1 = (keymatrix[1:,:] + keymatrix[:-1,:])/2 # gives the halfway point on the vector between one keyvector and the next
-        i = 0
-        while i < len(halfwayvecs1):
-            ### dennis's solution. many thanks!
-            mid_x = halfwayvecs1[i,0]
-            mid_y = halfwayvecs1[i,1]
-            dx = (keymatrix[i+1,0] - keymatrix[i,0])/2 * 0.01
-            dy = (keymatrix[i+1,1] - keymatrix[i,1])/2 * 0.01
-            i+=1
-            ax.arrow(x=mid_x, y=mid_y,
-                     dx=dx, dy=dy,width=arrow_head_width1, 
-                     facecolor='red', edgecolor='none')
+#         ### adding arrows for direction of first keyword timeline
+#         halfwayvecs1 = (keymatrix[1:,:] + keymatrix[:-1,:])/2 # gives the halfway point on the vector between one keyvector and the next
+#         i = 0
+#         while i < len(halfwayvecs1):
+#             ### dennis's solution. many thanks!
+#             mid_x = halfwayvecs1[i,0]
+#             mid_y = halfwayvecs1[i,1]
+#             dx = (keymatrix[i+1,0] - keymatrix[i,0])/2 * 0.01
+#             dy = (keymatrix[i+1,1] - keymatrix[i,1])/2 * 0.01
+#             i+=1
+#             ax.arrow(x=mid_x, y=mid_y,
+#                      dx=dx, dy=dy,width=arrow_head_width1, 
+#                      facecolor='red', edgecolor='none')
         
-        ### adding arrows for direction of second keyword timeline
-        halfwayvecs2 = (keymatrix2[1:,:] + keymatrix2[:-1,:])/2 # gives the halfway point on the vector between one keyvector and the next
-        i = 0
-        while i < len(halfwayvecs2):
-            ### dennis's solution. many thanks!
-            mid_x2 = halfwayvecs2[i,0]
-            mid_y2 = halfwayvecs2[i,1]
-            dx2 = (keymatrix2[i+1,0] - keymatrix2[i,0])/2 * 0.01
-            dy2 = (keymatrix2[i+1,1] - keymatrix2[i,1])/2 * 0.01
-            i+=1
-            ax.arrow(x=mid_x2, y=mid_y2,
-                     dx=dx2, dy=dy2,width=arrow_head_width2, 
-                     facecolor='blue', edgecolor='none')
+#         ### adding arrows for direction of second keyword timeline
+#         halfwayvecs2 = (keymatrix2[1:,:] + keymatrix2[:-1,:])/2 # gives the halfway point on the vector between one keyvector and the next
+#         i = 0
+#         while i < len(halfwayvecs2):
+#             ### dennis's solution. many thanks!
+#             mid_x2 = halfwayvecs2[i,0]
+#             mid_y2 = halfwayvecs2[i,1]
+#             dx2 = (keymatrix2[i+1,0] - keymatrix2[i,0])/2 * 0.01
+#             dy2 = (keymatrix2[i+1,1] - keymatrix2[i,1])/2 * 0.01
+#             i+=1
+#             ax.arrow(x=mid_x2, y=mid_y2,
+#                      dx=dx2, dy=dy2,width=arrow_head_width2, 
+#                      facecolor='blue', edgecolor='none')
         
         
-        ### avoiding text overlap
-        adjust_text([*texts2, *texts4], x=np.array(xs), y=np.array(ys), precision=0.08,force_text=(0.5, 1) , arrowprops=dict(arrowstyle="->", color='black', lw=0.5)) # , only_move={'points':'y', 'texts':'y'}
+#         ### avoiding text overlap
+#         adjust_text([*texts2, *texts4], x=np.array(xs), y=np.array(ys), precision=0.08,force_text=(0.5, 1) , arrowprops=dict(arrowstyle="->", color='black', lw=0.5)) # , only_move={'points':'y', 'texts':'y'}
     #     adjust_text(texts2, x=np.array(xs), y=np.array(ys), precision=0.08, force_text=(0.5, 1),arrowprops=dict(arrowstyle="->", color='r', lw=1)) # , only_move={'points':'y', 'texts':'y'}
     #     adjust_text(texts=[*texts2, *texts4],x=xs, y=ys , only_move={'points':'y', 'texts':'y'}, arrowprops=dict(arrowstyle="->", color='black', lw=0.5))
         
         if save:
             fig.savefig('./parallel_' + keyword + '_' + title + '.jpg')       
-
-# p = wordvec('1900-2000', 'sucks', np.array([1.8,1.8,1.8,1.8,1.8]))
-# w = wordvec('1900-2000', 'helolo', np.array([2,2,2,2,2]), p)
-# w2 = wordvec('1900-2000', 'helola', np.array([1,1,1,1,1]), p)
-# verse = vectorverse('v',[p,w,w2],hierarchy=1)
-# print(verse.dims)
-# verse.reduce()
-# print(verse.dims)
-# print([wv.val for wv in verse.parents.values()])
-# print([wv.val for wv in verse.wordvecs.values()])
-# p2 = wordvec('2000-2010', 'sucks', np.array([1.8,1.8,1.8,1.8,1.8]))
-# w3 = wordvec('2000-2010', 'helolo', np.array([2,2,2,2,2]), p2)
-# w4 = wordvec('2000-2010', 'helola', np.array([1,1,1,1,1]), p2)
-# w5 = wordvec('2000-2010', 'heloli', np.array([1,1,1,1,1]), p2)
-# verse2 = vectorverse('v2',[p2,w3,w4,w5], hierarchy=2)
-# verse2 + wordvec('1900-2000', 'helo', np.array([1,1,2,1,1]), p2)
-# verse2.avg(['helolo'], ['helola'],  sep='_averaged_with_')
-# print(verse2.wordvecs)
-# # print(verse2.wordvecs)
-# # verse2.reduce()
-# # print(verse2.size)
-# # print(verse2.wordvecs['helolo'])
-# # verse2.graph('fucker', 'the title')
-
-# p3 = wordvec('1900-2000', 'glucks_sucks', np.array([1.8,1.9,1.7,1.5,3]))
-# w6 = wordvec('1900-2000', 'ai', np.array([2,-2,1.7,1.5,3]), p3)
-# verse3 = vectorverse('v3', [p3, w6])
-# meta = metaverse('mega',[verse, verse2])
-# meta #+ verse3
-# print(meta)
-# # meta.implode('v2')
-# verse3.reduce()
-# meta.reduce()
-# print(meta)
-# meta.graph('sucks','title', arrow_head_width=4, subset=('v2', 'v2'), add_plot=([verse3], 1))
-
-
-# # meta.avg(['helolo'], ['helola'])
-# # print(verse.wordvecs)
-# # print(verse2.wordvecs)
-# # print(verse,'\n', verse2)
-# # print(verse.wordvecs['helolo'], '\n', verse2.wordvecs['helolo'])
-
-# wkdir = r'C:\Users\jackewiebohne\Documents\python tests\DTA\DTA/'
-# import pickle
-# with open(wkdir + 'textclass_metaverse.pkl', 'rb') as handle:
-#     txtclsverse = pickle.load(handle)
-    
-# with open(wkdir + 'timebinverse_metaverse.pkl', 'rb') as handle:
-#     timebinverse = pickle.load(handle)
-    
-# with open(wkdir + 'vectorverses.pkl', 'rb') as handle:
-#     vectorverses = pickle.load(handle)
-
-# # print(timebinverse)
-# timebinverse.reduce()
-# timebinverse.graph('einbildung', 'title')
