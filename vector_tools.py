@@ -1,6 +1,5 @@
 import numpy as np
 from sklearn.manifold import TSNE
-# from adjustText import adjust_text
 from matplotlib import pyplot as plt
 def warn(*args, **kwargs):
     pass
