@@ -60,4 +60,4 @@ for example
 timebinverse.reduce() # uses t-sne from scikit learn with default parameters (these can be changed by feeding params into the reduce method)
 timebinverse.graph('phantasieren', 'over the centuries')
 ```
-![example image](https://github.com/jackewiebohne/vector_tools/blob/mainexample image.png?raw=true)
+![example image](https://github.com/jackewiebohne/vector_tools/blob/main/example image.png?raw=true)
