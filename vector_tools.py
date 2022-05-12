@@ -634,8 +634,8 @@ class metaverse:
         
 #         ### avoiding text overlap
 #         adjust_text([*texts2, *texts4], x=np.array(xs), y=np.array(ys), precision=0.08,force_text=(0.5, 1) , arrowprops=dict(arrowstyle="->", color='black', lw=0.5)) # , only_move={'points':'y', 'texts':'y'}
-    #     adjust_text(texts2, x=np.array(xs), y=np.array(ys), precision=0.08, force_text=(0.5, 1),arrowprops=dict(arrowstyle="->", color='r', lw=1)) # , only_move={'points':'y', 'texts':'y'}
-    #     adjust_text(texts=[*texts2, *texts4],x=xs, y=ys , only_move={'points':'y', 'texts':'y'}, arrowprops=dict(arrowstyle="->", color='black', lw=0.5))
+#         adjust_text(texts2, x=np.array(xs), y=np.array(ys), precision=0.08, force_text=(0.5, 1),arrowprops=dict(arrowstyle="->", color='r', lw=1)) # , only_move={'points':'y', 'texts':'y'}
+#         adjust_text(texts=[*texts2, *texts4],x=xs, y=ys , only_move={'points':'y', 'texts':'y'}, arrowprops=dict(arrowstyle="->", color='black', lw=0.5))
         
-        if save:
-            fig.savefig('./parallel_' + keyword + '_' + title + '.jpg')       
+#         if save:
+#             fig.savefig('./parallel_' + keyword + '_' + title + '.jpg')       
