@@ -52,6 +52,18 @@ for file in pl.Path(wkdir + 'model/').iterdir():
         except:
             print(name)
             errors.append(name)
+            
+textclasses = grp2.author.unique() # df grouped by textclass
+timebins = grp.author.unique()
+
+# create metaverses: one for textclasses and one for the timebins
+txtclsverse = metaverse(superkey='textclass_metaverse', vectorverses=[])
+timebinverse = metaverse(superkey='timebin_metaverse', vectorverses=[])
+for vv in vectorverses:
+    if vv.key in textclasses:
+        txtclsverse + vv
+    if vv.key in timebins:
+        timebinverse + vv
 ```
 the point of all this is predominantly for fast and easy dimensionality reduction and plotting
 
